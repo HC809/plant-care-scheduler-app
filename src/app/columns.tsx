@@ -2,8 +2,9 @@
 
 import { Plant } from "@/types/Plant";
 import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge"; // Asegúrate de importar el componente Badge
-import { Droplet } from "lucide-react"; // Usa un ícono como Droplet de lucide-react
+import { Badge } from "@/components/ui/badge";
+import { Droplet } from "lucide-react";
+import { format } from "date-fns";
 
 export const columns: ColumnDef<Plant>[] = [
     {
@@ -21,6 +22,12 @@ export const columns: ColumnDef<Plant>[] = [
     {
         accessorKey: "lastWateredDate",
         header: "Last Watered Date",
+        cell: ({ row }) => {
+            const date = row.original.lastWateredDate;
+            if (!date) return "N/A";
+
+            return format(new Date(date), "yyyy-MM-dd"); 
+        },
     },
     {
         accessorKey: "location",
@@ -76,5 +83,11 @@ export const columns: ColumnDef<Plant>[] = [
     {
         accessorKey: "nextWateringDate",
         header: "Next Watering Date",
+        cell: ({ row }) => {
+            const date = row.original.nextWateringDate;
+            if (!date) return "N/A";
+
+            return format(new Date(date), "yyyy-MM-dd"); 
+        },
     },
 ];
