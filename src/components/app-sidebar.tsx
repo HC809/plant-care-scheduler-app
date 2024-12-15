@@ -1,4 +1,4 @@
-import { Home } from "lucide-react"
+import { Leaf } from "lucide-react"
 
 import {
     Sidebar,
@@ -17,16 +17,19 @@ const items = [
     {
         title: "My Plants",
         url: "#",
-        icon: Home,
+        icon: Leaf,
     }
 ]
 
 export function AppSidebar() {
     return (
         <Sidebar>
+            <SidebarHeader>
+                <h1>Logo</h1>
+            </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarGroupLabel>Plant Care Scheduler</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => (
@@ -43,6 +46,9 @@ export function AppSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter>
+                Hector Caballero
+            </SidebarFooter>
         </Sidebar>
     )
 }
