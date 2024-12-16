@@ -13,6 +13,9 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
+import logo from '../../public/plant-logo.png';
+import Image from 'next/image';
+
 const items = [
     {
         title: "My Plants",
@@ -24,12 +27,19 @@ const items = [
 export function AppSidebar() {
     return (
         <Sidebar>
-            <SidebarHeader>
-                <h1>Logo</h1>
+            <SidebarHeader className="flex justify-center items-center h-32">
+                <Image
+                    src={logo.src}
+                    width={80}
+                    height={80}
+                    className="hidden md:block"
+                    alt="logo-white"
+                    priority={true}
+                />
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Plant Care Scheduler</SidebarGroupLabel>
+                    <SidebarGroupLabel>Hector Caballero - Plant Care Scheduler</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => (
@@ -46,9 +56,9 @@ export function AppSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
+            {/* <SidebarFooter>
                 Hector Caballero
-            </SidebarFooter>
+            </SidebarFooter> */}
         </Sidebar>
     )
 }
