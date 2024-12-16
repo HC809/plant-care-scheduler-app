@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({
           <AppSidebar />
           <SidebarTrigger />
           <main className="flex flex-1 flex-col p-10">
+            <Toaster position="top-right" />
             {children}
           </main>
         </SidebarProvider>

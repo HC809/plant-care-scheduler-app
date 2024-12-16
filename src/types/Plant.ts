@@ -17,3 +17,7 @@ export interface CreatePlant {
     lastWateredDate:       string;
     location:              string;
 }
+
+export interface RegisterWatering {
+    plantId:               string;
+}

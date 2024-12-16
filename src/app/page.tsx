@@ -17,11 +17,13 @@ export default function Home() {
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [editingPlant, setEditingPlant] = useState<Plant | null>(null);
 
+  const fetchPlants = () => { fetchData('/plants'); };
+
   useEffect(() => {
     if (!hasFetched) {
-      fetchData('/plants');
+      fetchPlants();
     }
-  }, [hasFetched, fetchData]);
+  }, [hasFetched, fetchPlants]);
 
   if (error) {
     return (
@@ -29,7 +31,7 @@ export default function Home() {
         <ErrorAlert error={error} />
         <Button
           onClick={() => {
-            fetchData('/plants');
+            fetchPlants();
           }}
           className="mt-2"
         >
@@ -57,8 +59,8 @@ export default function Home() {
   };
 
   const handlePlantAdded = () => {
-    fetchData('/plants'); 
-    setIsFormOpen(false); 
+    fetchPlants();
+    setIsFormOpen(false);
   };
 
   return (
@@ -67,7 +69,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold">My Plants</h1>
         <Button onClick={handleCreate}>Add New Plant</Button>
       </div>
-      {plants && <DataTable columns={columns} data={plants} />}
+      {plants && <DataTable columns={columns({ fetchData: () => fetchPlants() })} data={plants} />}
 
       {isFormOpen && (
         <PlantForm
