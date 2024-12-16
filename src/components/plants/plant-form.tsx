@@ -18,7 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Label } from '../ui/label';
 import { useAxiosMutation } from '@/hooks/use-axios-mutation';
 import ErrorMessage from '../error-message';
-import { CreatePlant, Plant } from '@/types/Plant';
+import { CreatePlant } from '@/types/Plant';
 import { plantSchema } from '@/lib/plants/plant-schema';
 import { ReloadIcon } from '@radix-ui/react-icons';
 
@@ -31,7 +31,7 @@ interface FormProps {
 }
 
 export default function PlantForm({ isOpen, onClose, onPlantAdded }: FormProps) {
-    const { mutate, isLoading: isSubmitting, error: submitError } = useAxiosMutation<Plant>();
+    const { mutate, isLoading: isSubmitting, error: submitError } = useAxiosMutation<CreatePlant>();
 
     const {
         register,

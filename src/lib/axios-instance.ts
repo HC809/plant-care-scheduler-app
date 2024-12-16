@@ -1,3 +1,4 @@
+import { CustomError, ProblemDetails } from "@/types/ResponseErrorTypes";
 import axios, { AxiosError, AxiosInstance } from "axios";
 
 export const createAxiosInstance = (): AxiosInstance => {

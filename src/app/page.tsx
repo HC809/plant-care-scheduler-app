@@ -15,15 +15,12 @@ export default function Home() {
   const { data: plants, isLoading, error, hasFetched, fetchData } = useAxiosData<Plant[]>();
 
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
-  const [editingPlant, setEditingPlant] = useState<Plant | null>(null);
-
-  const fetchPlants = () => { fetchData('/plants'); };
 
   useEffect(() => {
     if (!hasFetched) {
-      fetchPlants();
+      fetchData('/plants');
     }
-  }, [hasFetched, fetchPlants]);
+  }, [hasFetched, fetchData]);
 
   if (error) {
     return (
@@ -31,7 +28,7 @@ export default function Home() {
         <ErrorAlert error={error} />
         <Button
           onClick={() => {
-            fetchPlants();
+            fetchData('/plants');
           }}
           className="mt-2"
         >
@@ -50,7 +47,6 @@ export default function Home() {
   }
 
   const handleCreate = () => {
-    setEditingPlant(null);
     setIsFormOpen(true);
   };
 
@@ -59,7 +55,7 @@ export default function Home() {
   };
 
   const handlePlantAdded = () => {
-    fetchPlants();
+    fetchData('/plants');
     setIsFormOpen(false);
   };
 
@@ -69,7 +65,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold">My Plants</h1>
         <Button onClick={handleCreate}>Add New Plant</Button>
       </div>
-      {plants && <DataTable columns={columns({ fetchData: () => fetchPlants() })} data={plants} />}
+      {plants && <DataTable columns={columns({ fetchData: () => fetchData('/plants') })} data={plants} />}
 
       {isFormOpen && (
         <PlantForm

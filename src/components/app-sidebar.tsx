@@ -3,7 +3,7 @@ import { Leaf } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
+    //SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,

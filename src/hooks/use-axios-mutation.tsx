@@ -5,7 +5,7 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import useAxios from './use-axios';
 
 interface UseAxiosMutationReturn<T> {
-    mutate: (method: 'POST' | 'PUT' | 'DELETE', url: string, data: any, config?: AxiosRequestConfig) => Promise<AxiosResponse<T> | void>;
+    mutate: (method: 'POST' | 'PUT' | 'DELETE', url: string, data: T, config?: AxiosRequestConfig) => Promise<AxiosResponse<T> | void>;
     isLoading: boolean;
     error: string | null;
 }
@@ -15,7 +15,7 @@ export function useAxiosMutation<T>(): UseAxiosMutationReturn<T> {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const mutate = async (method: 'POST' | 'PUT' | 'DELETE', url: string, data: any, config?: AxiosRequestConfig) => {
+    const mutate = async (method: 'POST' | 'PUT' | 'DELETE', url: string, data: T, config?: AxiosRequestConfig) => {
         if (!apiClient) return;
 
         setIsLoading(true);

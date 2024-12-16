@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource } from 'axios';
+import { useState, useCallback } from 'react';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import useAxios from './use-axios';
 
 interface UseAxiosDataReturn<T> {
@@ -18,7 +18,6 @@ export function useAxiosData<T>(): UseAxiosDataReturn<T> {
     const [data, setData] = useState<T | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false); // Cambiar a false
     const [error, setError] = useState<string | null>(null);
-    const [cancelToken, setCancelToken] = useState<CancelTokenSource | null>(null);
     const [hasFetched, setHasFetched] = useState<boolean>(false);
 
     const fetchData = useCallback(async (url: string, config?: AxiosRequestConfig) => {
@@ -45,15 +44,7 @@ export function useAxiosData<T>(): UseAxiosDataReturn<T> {
             setIsLoading(false); 
             setHasFetched(true); 
         }
-    }, [apiClient, cancelToken]);
-
-    useEffect(() => {
-        return () => {
-            if (cancelToken) {
-                cancelToken.cancel('Component unmounted.');
-            }
-        };
-    }, [cancelToken]);
+    }, [apiClient]);
 
     return { data, isLoading, error, hasFetched, fetchData };
 }
