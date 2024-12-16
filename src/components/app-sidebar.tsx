@@ -1,4 +1,4 @@
-import { Leaf } from "lucide-react"
+import { Leaf, ClipboardList } from "lucide-react"
 
 import {
     Sidebar,
@@ -19,8 +19,13 @@ import Image from 'next/image';
 const items = [
     {
         title: "My Plants",
-        url: "#",
+        url: "/",
         icon: Leaf,
+    },
+    {
+        title: "Watering History",
+        url: "/watering-history",
+        icon: ClipboardList,
     }
 ]
 
